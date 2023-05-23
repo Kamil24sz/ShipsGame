@@ -11,6 +11,10 @@ namespace ShipsGame.Klasy
 {
     public static class Rysowanie
     {
+        //dodajemy ikony dla trafionego / nie trafionego strzału
+        private static readonly Bitmap hitImage = Properties.Resources.hitImage;
+        private static readonly Bitmap splashImage = Properties.Resources.splashImage;
+
         private const int PRZEZROCZYSTOSC = 255;
 
         private const int SZEROKOSC_RAMKI = 35;
@@ -27,13 +31,13 @@ namespace ShipsGame.Klasy
             new SolidBrush(Color.FromArgb(PRZEZROCZYSTOSC, Color.Blue)),
             new SolidBrush(Color.FromArgb(PRZEZROCZYSTOSC, Color.Violet))
         };
-
-        /*public static void RysujObramowanie(int komorkaX, int komorkaY, int kolor, PictureBox plansza)
+        // trzymamy crtl  + klikamy k,  u
+        public static void RysujObramowanie(int komorkaX, int komorkaY, int kolor, PictureBox plansza)
         {
             Graphics graphics = plansza.CreateGraphics();
             graphics.DrawRectangle(new Pen(kolory[kolor], 3), komorkaX * SZEROKOSC_KOMORKI, komorkaY * SZEROKOSC_KOMORKI, SZEROKOSC_RAMKI, WYSOKOSC_RAMKI);
-        }*/
-        
+        }
+
         /*public static void RysujKomorke(int komorkaX, int komorkaY, int kolor, PaintEventArgs e)
         {
             e.Graphics.FillRectangle(kolory[kolor], komorkaX * SZEROKOSC_KOMORKI, komorkaY * SZEROKOSC_KOMORKI, SZEROKOSC_KOMORKI, WYSOKOSC_KOMORKI);

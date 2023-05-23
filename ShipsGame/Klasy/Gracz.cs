@@ -15,7 +15,7 @@ namespace ShipsGame.Klasy
         //plansza gracza
         // -1 - pole puste
         // 0-3 - pole zawiera statek o długości +1    0  -> statek 1masztowy    1  -> statek 2masztowy
-        public int[,] Plansza;
+        public int[,] Plansza; 
 
         //plansza do przechowywania info czy pole było odkryte
         // true -> trafiony     false -> nie trafiony
@@ -38,6 +38,19 @@ namespace ShipsGame.Klasy
             OdkrytePola = new bool[ROZMIAR_PLANSZY, ROZMIAR_PLANSZY];
 
             LiczbaStatkówDoZatopienia = Flota.Length;
+
+            for (int i = 0; i < ROZMIAR_PLANSZY; i++)
+            {
+                for(int j = 0; j < ROZMIAR_PLANSZY; j++)
+                {
+                    //każda z komórek jest na początku pusta (-1)
+                    Plansza[i, j] = -1;
+
+                    //wszystkie pola są na początku nie trafione 
+                    OdkrytePola[i, j] = false;
+                }
+            }
+
         }
     }
 }

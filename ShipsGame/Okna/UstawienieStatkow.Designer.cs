@@ -30,7 +30,7 @@
         {
             this.planszaGracza = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnDalej = new System.Windows.Forms.Button();
             this.txtNazwaGracza = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.planszaGracza.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.planszaGracza.TabIndex = 0;
             this.planszaGracza.TabStop = false;
+            this.planszaGracza.MouseMove += new System.Windows.Forms.MouseEventHandler(this.planszaGracza_MouseMove);
             // 
             // button1
             // 
@@ -56,15 +57,16 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Obróć";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnDalej
             // 
-            this.button2.Location = new System.Drawing.Point(540, 284);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Dalej";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnDalej.Location = new System.Drawing.Point(540, 284);
+            this.btnDalej.Name = "btnDalej";
+            this.btnDalej.Size = new System.Drawing.Size(75, 23);
+            this.btnDalej.TabIndex = 2;
+            this.btnDalej.Text = "Dalej";
+            this.btnDalej.UseVisualStyleBackColor = true;
             // 
             // txtNazwaGracza
             // 
@@ -101,7 +103,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNazwaGracza);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnDalej);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.planszaGracza);
             this.Name = "UstawienieStatkow";
@@ -116,7 +118,7 @@
 
         private System.Windows.Forms.PictureBox planszaGracza;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDalej;
         private System.Windows.Forms.TextBox txtNazwaGracza;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

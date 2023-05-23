@@ -13,6 +13,11 @@ namespace ShipsGame.Klasy
 {
     public static class Gra
     {
+        public static Gracz Uzytkownik;
+        public static Gracz Komputer;
+
+        public static int[] RozmiaryStatkow = { 1, 2, 3, 4 };
+
         /*public static bool CzyMoznaPostawicStatek(int indexAktualnegoStatku, int komorkaX, int komorkaY, bool jestHoryzontalnie, int[,] komorki)
         {
             if (jestHoryzontalnie)

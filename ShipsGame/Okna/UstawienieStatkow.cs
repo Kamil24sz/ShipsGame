@@ -25,6 +25,8 @@ namespace ShipsGame.Okna
         // false - pionowo
         bool poziom;
 
+        bool[] rozmieszczoneStatki = new bool[4];
+
         public UstawienieStatkow()
         {
             InitializeComponent();
@@ -88,6 +90,100 @@ namespace ShipsGame.Okna
         private void button1_Click(object sender, EventArgs e)
         {
             poziom = !poziom;
+        }
+
+        private void planszaGracza_Click(object sender, EventArgs e)
+        {
+            //sprawdzenie czy można postawić statek w danym polu
+            if (CzyMoznaPostawicStatek(indexAktualnegoStatku, myszX, myszY, poziom, Gra.Uzytkownik.Plansza))
+            {
+                // ustalamy wartość true, jeśłi dany statek został rozmieszczony
+                rozmieszczoneStatki[indexAktualnegoStatku] = true;
+
+                //jeśli można postawić statek to wywołaj funkcję do rozmieszczania
+                Gra.RozmiescStatek(indexAktualnegoStatku, myszX, myszY, poziom, Gra.Uzytkownik.Plansza);
+
+                // odświeżenie planszy gracza
+                planszaGracza.Refresh();
+
+                if(indexAktualnegoStatku < Gra.RozmiaryStatkow.Length)
+                {
+                    indexAktualnegoStatku++;
+                }
+
+                //gdy wszystkie statki są rozstawione
+                int pos = Array.IndexOf(rozmieszczoneStatki, false); //array.index of gdy nie znajdzie wartości w tabliy
+                // zwraca -1 
+                if (pos == -1) {
+                    btnDalej.Enabled = true;
+                    planszaGracza.Enabled = false;
+                }
+            }
+
+        }
+
+        //funkcja do sprawdzania czy można postawić statek w dnaym miejscu
+        public static bool CzyMoznaPostawicStatek(int indexAktualnegoStatku, int komorkaX, int komorkaY, 
+            bool jestHoryzontalnie, int[,] komorki)
+        {
+            // są 2 wersje dla statku umieszonego pionowo i poziomo  =>   poziomo - true   ,  pionowo - false
+            if(jestHoryzontalnie)
+            {
+                // sprawdzamy czy statek się zmieści na szerokość - ustawienie poziome
+                if(komorkaX + Gra.RozmiaryStatkow[indexAktualnegoStatku] - 1 <= Gracz.OSTATNI_INDEX_PLANSZY)
+                {
+                    // pętla sprawdza pole przed i za statkiem (przed statkiem i za statkiem)
+                    for(int i = Math.Max(0, komorkaX - 1);
+                        i<= Math.Min(Gracz.OSTATNI_INDEX_PLANSZY, komorkaX + Gra.RozmiaryStatkow[indexAktualnegoStatku]); i++)
+                    {
+                        // pole nad i pod statkiem ( +1 i -1 nad statkiem)
+                        for(int j = Math.Max(0, komorkaY - 1); 
+                            j <= Math.Min(Gracz.OSTATNI_INDEX_PLANSZY, komorkaY + 1); j++)
+                        {
+                            if (komorki[i,j] != -1)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                } 
+            }
+            else
+            {
+                // sprawdzamy czy statek zmieści się na wysokość - ustawienie pionowe
+                if(komorkaY + Gra.RozmiaryStatkow[indexAktualnegoStatku] - 1 <= Gracz.OSTATNI_INDEX_PLANSZY)
+                {
+                    // sprawdzenie komórek z lewej i prawej strony statku ( +1, -1)
+                    for (int i = Math.Max(0, komorkaX - 1);
+                        i <= Math.Min(Gracz.OSTATNI_INDEX_PLANSZY, komorkaX + 1); i++)
+                    {
+                        // sprawdzenie komórek nad i pod statkiem (nad i przed stkiem)
+                        for (int j = Math.Max(0, komorkaY - 1);
+                            j <= Math.Min(Gracz.OSTATNI_INDEX_PLANSZY, komorkaY + Gra.RozmiaryStatkow[indexAktualnegoStatku]); j++)
+                        {
+                            if (komorki[i, j] != -1)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        private void planszaGracza_Paint(object sender, PaintEventArgs e)
+        {
+            Rysowanie.RysujUstawioneKomorki(Gra.Uzytkownik.Plansza, e);
         }
     }
 }

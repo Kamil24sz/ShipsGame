@@ -38,12 +38,12 @@ namespace ShipsGame.Klasy
             graphics.DrawRectangle(new Pen(kolory[kolor], 3), komorkaX * SZEROKOSC_KOMORKI, komorkaY * SZEROKOSC_KOMORKI, SZEROKOSC_RAMKI, WYSOKOSC_RAMKI);
         }
 
-        /*public static void RysujKomorke(int komorkaX, int komorkaY, int kolor, PaintEventArgs e)
+        public static void RysujKomorke(int komorkaX, int komorkaY, int kolor, PaintEventArgs e)
         {
             e.Graphics.FillRectangle(kolory[kolor], komorkaX * SZEROKOSC_KOMORKI, komorkaY * SZEROKOSC_KOMORKI, SZEROKOSC_KOMORKI, WYSOKOSC_KOMORKI);
-        }*/
+        }
 
-        /*public static void RysujUstawioneKomorki(int[,] komorki, PaintEventArgs e)
+        public static void RysujUstawioneKomorki(int[,] komorki, PaintEventArgs e)
         {
             for (int x = 0; x < Gracz.ROZMIAR_PLANSZY; x++)
             {
@@ -55,7 +55,7 @@ namespace ShipsGame.Klasy
                     }
                 }
             }
-        }*/
+        }
 
         /*public static void RysujKomorki(bool[,] odkryteKomorki, int[,] komorki, PaintEventArgs e)
         {

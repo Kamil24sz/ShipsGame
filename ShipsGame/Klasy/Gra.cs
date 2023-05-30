@@ -67,7 +67,20 @@ namespace ShipsGame.Klasy
 
         public static void RozmiescStatek(int indexAktualnegoStatku, int komorkaX, int komorkaY, bool jestHoryzontalnie, int[,] komorki)
         {
-            
+            if (jestHoryzontalnie) // true => poziomo
+            {
+                for(int i = 0; i < RozmiaryStatkow[indexAktualnegoStatku]; i++)
+                {
+                    komorki[komorkaX + i, komorkaY] = indexAktualnegoStatku;
+                }
+            }
+            else // false = > pionowo
+            {
+                for (int i = 0; i < RozmiaryStatkow[indexAktualnegoStatku]; i++)
+                {
+                    komorki[komorkaX, komorkaY + i] = indexAktualnegoStatku;
+                }
+            }
         }
 
         /*public static void RozmieszczenieStatkowKomputera()
